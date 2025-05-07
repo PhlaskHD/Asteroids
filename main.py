@@ -4,6 +4,7 @@ from constants import *
 from player import Player
 from asteroid import Asteroid
 from asteroidfield import *
+from shot import Shot
 
 def main():
     pygame.init()
@@ -17,6 +18,7 @@ def main():
     AsteroidField.containers = (updatable,)
     Asteroid.containers = (updatable, drawable, asteroids_group)
     Player.containers = (updatable, drawable)
+    Shot.containers = (updatable, drawable)
 
     asteroid_field = AsteroidField()
     
@@ -34,8 +36,11 @@ def main():
                 return
         
         updatable.update(dt)
+
+
         for each in asteroids_group:
             if each.is_colliding(player) == True:
+                print("Game over!")
                 sys.exit()
 
 
